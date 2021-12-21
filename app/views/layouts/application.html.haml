@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title Test Tech App
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+  %body
+    = yield
+    .br 
+   
+    - if flash.alert.present?
+      = flash.alert
+    
+    - if logged_in?
+      = button_to "Logout", sessions_path, method: :delete
